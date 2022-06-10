@@ -9,7 +9,7 @@ const FILTER = {
 
 let filter = FILTER.ALL;
 
-function render(){
+function render() {
     let filteredList = arr;
     if (filter === FILTER.DONE) {
         filteredList = arr.filter(item => item.check)
@@ -39,20 +39,27 @@ function CreateTask() {
     render();
 }
 
-function remove(id){
+function remove(id) {
     arr = arr.filter(item => item.id !== id);
     render();
 }
-function FilterElements(filt){
- //   const btnfilt = document.getElementById('${id}')
-  //  btnfilt.
-    filter = filt;
+
+function FilterElements(newFilterValue) {
+    let btns = document.getElementsByName("filter");
+    for(let btn of btns){
+        btn.style.backgroundColor = "white";
+        if(btn.id === newFilterValue.toString()){
+            btn.style.backgroundColor = "red";
+        }
+    }
+    filter = newFilterValue;
+
     render();
 }
 
-function checkchecked(id){
+function checkchecked(id) {
     arr = arr.map(item => {
-        if(item.id === id){
+        if (item.id === id) {
             item.check = !item.check;
         }
         return item;
